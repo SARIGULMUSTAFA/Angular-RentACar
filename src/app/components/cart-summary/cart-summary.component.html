@@ -1,0 +1,13 @@
+<li *ngIf="sepet.length>0" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Sepetiniz
+    </a>
+    <ul class="dropdown-menu">
+      <li *ngFor="let item of sepet"><a  class="dropdown-item"> <span class="badge text-bg-secondary">{{item.quantity}}</span> {{item.model.name}}<span (click)="removeFromCart(item.model)" class="badge text-bg-danger">Sil</span></a></li>
+    
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item">Sepete Git</a></li>
+    </ul>
+  </li>
+ 
+  

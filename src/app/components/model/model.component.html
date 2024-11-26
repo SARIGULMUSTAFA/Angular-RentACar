@@ -1,0 +1,46 @@
+
+  <div class="spinner-border text-primary" role="status" *ngIf="dataLoaded==false">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div clas="row">
+    <div class="mb-3">
+        <label for="filterText" class="form-label">Marka Arama</label>
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Aranacak Marka">
+      </div>
+
+      <div class="mb-3">
+        <label for="modelText" class="form-label">Model Arama</label>
+        <input type="text" [(ngModel)]="modelText" class="form-control" id="modelText" placeholder="Aranacak Model">
+      </div>
+  </div>
+ 
+  <div *ngIf="filterText.length>2" class="alert alert-success">
+  {{filterText}} aradınız
+  </div>
+
+  <div *ngIf="modelText.length>2" class="alert alert-info">
+    {{modelText}} aradınız
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Marka Adı</th>
+            <th>Modeli</th>
+            <th>Fiyatı</th>
+            <th>Kdvli Fiyat</th>
+            <th></th>
+        </tr>        
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let model of modeller |filter:filterText |modeleGore:modelText" >
+            <td>{{model.brandName}}</td>
+            <td>{{model.name}}</td>
+            <td>{{model.dailyPrice |currency}}</td>
+            <td>{{model.dailyPrice |vatAded:50 |currency}}</td>
+            <td><button (click)="addToCart(model)" class="btn btn-success">SepeteEkle</button></td>
+        </tr>
+
+
+    </tbody>
+</table>
